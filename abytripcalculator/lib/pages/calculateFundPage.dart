@@ -2,17 +2,17 @@ import 'package:abytripcalculator/services/CountFundsService.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../services/CountFundsByTrancheService.dart';
+import '../services/CalculateFundsByTrancheService.dart';
 import '../tools/Result.dart';
 
-class CountFundPage extends StatefulWidget {
-  const CountFundPage({super.key});
+class CalculateFundPage extends StatefulWidget {
+  const CalculateFundPage({super.key});
 
   @override
-  State<CountFundPage> createState() => _CountFundPageState();
+  State<CalculateFundPage> createState() => _CalculateFundPageState();
 }
 
-class _CountFundPageState extends State<CountFundPage> {
+class _CalculateFundPageState extends State<CalculateFundPage> {
   int _selectedNumber = 0;
   double _priceToRefund = 0;
   late String resultDecomposition = "";
@@ -26,7 +26,7 @@ class _CountFundPageState extends State<CountFundPage> {
   void calculateFundsAndSetResult() {
     // Appel de la fonction avec la valeur actuelle de inputValue
     setState(() {
-      Result currentResult = countFundsV2(_selectedNumber);
+      Result currentResult = calculateFunds(_selectedNumber);
       _priceToRefund = currentResult.result;
       resultDecomposition = currentResult.resultDecomposition;
     });

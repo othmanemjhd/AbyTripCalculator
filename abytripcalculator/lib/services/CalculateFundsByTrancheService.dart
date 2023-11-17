@@ -17,7 +17,7 @@ List<TrancheKilometrique> init(){
   List<TrancheKilometrique> tranchesKilometriques = [tranche1, tranche2, tranche3,tranche4,tranche5,tranche6,tranche7,tranche8];
   return  tranchesKilometriques;
 }
-Result countFundsV2(int numbreOfKilometres){
+Result calculateFunds(int numbreOfKilometres){
   List<TrancheKilometrique> tranchesKilometriques = init();
   double result = 0;
   String resultDecomposition = "";
@@ -30,14 +30,13 @@ Result countFundsV2(int numbreOfKilometres){
         distanceInTranche = numbreOfKilometres - tranche.debutTranche ;
       }
         result += distanceInTranche*tranche.fraisRemboursement;
-      if(tranche.debutTranche == 0 ){
-        resultDecomposition += "($distanceInTranche * ${tranche.fraisRemboursement})";
-      }else{
-        resultDecomposition += " + ($distanceInTranche * ${tranche.fraisRemboursement})";
+      if (tranche.debutTranche != 0) {
+        resultDecomposition += " + ";
       }
+      resultDecomposition += "($distanceInTranche * ${tranche.fraisRemboursement})";
 
     }
-    // Ajouter les frais pour la tranche actuelle
+
 
   }
 
