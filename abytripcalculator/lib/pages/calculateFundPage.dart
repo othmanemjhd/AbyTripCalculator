@@ -143,6 +143,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                         // Ajoutez ici la logique pour le bouton "Annuler"
                         setState(() {
                           _priceToRefund = 0;
+                          resultDecomposition = "";
                           _selectedNumberController.clear();
                         });
                         print('Annuler');
