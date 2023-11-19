@@ -1,4 +1,3 @@
-import 'package:abytripcalculator/services/CountFundsService.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -127,7 +126,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                         }
                       },
                       style : ElevatedButton.styleFrom(
-                          primary: Colors.green[900],
+                          backgroundColor: Colors.green[900],
                           padding:const EdgeInsets.fromLTRB(50, 10, 50, 10),
                           shape : RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)
@@ -146,7 +145,6 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                           resultDecomposition = "";
                           _selectedNumberController.clear();
                         });
-                        print('Annuler');
                       },
                       style : ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange[200],
