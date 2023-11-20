@@ -40,11 +40,16 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.bold,
             fontSize: 30,
+            color: Colors.white,
           ),
         ),
         centerTitle: true,
         backgroundColor: Colors.orange[400],
         elevation: 0,
+        iconTheme: const IconThemeData(
+          color: Colors.white, // Change the color here
+        ),
+
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -135,6 +140,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                       child: const Text('Calculer',style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Montserrat',
+                        color: Colors.white,
                       ),),
                     ),
                     ElevatedButton(
@@ -155,7 +161,8 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                       ),
                       child: const Text('Annuler',style : TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Montserrat'
+                        fontFamily: 'Montserrat',
+                        color: Colors.white,
                       )),
                     ),
                   ],
