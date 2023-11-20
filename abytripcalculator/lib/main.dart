@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //home: SplashScreen(),
+      debugShowCheckedModeBanner: false,
       routes: {
         '/' : (context) => const SplashScreen(),// Démarre avec l'écran de chargement
       '/home' : (context) => const HomePage(),
