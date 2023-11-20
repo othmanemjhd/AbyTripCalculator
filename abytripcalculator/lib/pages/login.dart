@@ -32,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.bold,
             fontSize: 30,
+            color: Colors.white,
           ),
         ),
         centerTitle: true,
@@ -134,6 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text('SE CONNECTER',style: TextStyle(
                     fontFamily:'Montserrat',
                     fontWeight: FontWeight.bold,
+                    color:Colors.white,
                   ))
                 ),
 
