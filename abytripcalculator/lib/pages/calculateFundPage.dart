@@ -46,6 +46,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
         centerTitle: true,
         backgroundColor: Colors.orange[400],
         elevation: 0,
+        //automaticallyImplyLeading: false,
         iconTheme: const IconThemeData(
           color: Colors.white, // Change the color here
         ),

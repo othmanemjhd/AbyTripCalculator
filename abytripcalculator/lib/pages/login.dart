@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.bold,
-            fontSize: 30,
+            fontSize: 28,
             color: Colors.white,
           ),
         ),
