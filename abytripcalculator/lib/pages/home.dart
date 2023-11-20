@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.bold,
           fontSize: 30,
+          color: Colors.white,
         ),),
         centerTitle: true,
         backgroundColor:Colors.orange[400],
@@ -34,8 +35,12 @@ class HomePage extends StatelessWidget {
         label: const Text('SE CONNECTER',
           style:TextStyle(
               fontFamily: 'Montserrat',
-              fontWeight: FontWeight.bold),),
-        icon: const Icon(Icons.car_repair_outlined),
+              fontWeight: FontWeight.bold,
+              color : Colors.white,
+          ),
+
+        ),
+        icon: const Icon(Icons.car_repair_outlined,color: Colors.white,),
 
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
