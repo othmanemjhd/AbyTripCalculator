@@ -266,7 +266,7 @@ class _MyDialogState extends State<MyDialog> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Close'),
+          child: const Text('Fermer'),
         ),
       ],
     );
