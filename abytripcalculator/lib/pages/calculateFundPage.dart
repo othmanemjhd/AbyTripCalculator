@@ -185,7 +185,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.bold,
                             ),),
-                      const SizedBox(height: 50.0),
+
                      /* Text("Décomposition du calcul : $resultDecomposition",
                         style: const TextStyle(
                           fontFamily: 'montserrat',
@@ -194,13 +194,10 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                     ],
                   ),
                 ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
+              const SizedBox(height: 100.0),
+           Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -213,9 +210,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                           style: TextStyle(
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.bold))),
-                ],
-              ),
-            ),
+                ),
             ],
           ),
         ),

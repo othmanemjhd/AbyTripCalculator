@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         centerTitle: true,
         backgroundColor: Colors.orange[400],
         elevation: 0,
-        //automaticallyImplyLeading: false
+        automaticallyImplyLeading: false
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: Colors.green[900],
                     padding:const EdgeInsets.fromLTRB(50, 10, 50, 10),
                     shape : RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)
+                      borderRadius: BorderRadius.circular(20.0)
                     )
                   ),
                   child: const Text('SE CONNECTER',style: TextStyle(
