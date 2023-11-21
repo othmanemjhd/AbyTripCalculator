@@ -50,7 +50,7 @@ Result calculate(int numbreOfKilometres){
   }
 
   //Last item with the final result
-   map.add(({"Tranche": "", 'Frais': '', 'Result': '$result €'}));
+   map.add(({"Tranche": "", 'Frais': '', 'Result': '${result.toStringAsFixed(2)} €'}));
    Result funds = Result(result, resultDecomposition) ;
 
   return funds;
