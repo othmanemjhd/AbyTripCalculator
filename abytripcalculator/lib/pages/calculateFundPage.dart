@@ -195,8 +195,8 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                   ),
                 ),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(100,10,100,10),
+            Align(
+              alignment: Alignment.bottomCenter,
               child: ElevatedButton(
                   onPressed: () {
                     showDialog(
