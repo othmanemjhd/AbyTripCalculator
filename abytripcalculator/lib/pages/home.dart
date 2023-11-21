@@ -25,13 +25,20 @@ class HomePage extends StatelessWidget {
 
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        child: Container(height: 50.0),
+        child: Container(height: 30.0,),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.pushNamed(context, '/login');
         },
+        //extendedPadding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
         backgroundColor: Colors.green[800],
+        elevation: 20.0, // Set elevation (shadow)
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+          // Set border radius
+         // side: const BorderSide(color: Colors.white, width: 2.0), // Set border color and width
+        ),
         label: const Text('SE CONNECTER',
           style:TextStyle(
               fontFamily: 'Montserrat',

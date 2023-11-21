@@ -22,14 +22,18 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
     'assets/images/car2.png',
 
   ];
+  List<Map<String,dynamic>> map = [];
   void calculateFundsAndSetResult() {
     // Appel de la fonction avec la valeur actuelle de inputValue
     setState(() {
-      Result currentResult = calculateFunds(_selectedNumber);
+      CalculateFund instance = CalculateFund();
+      Result currentResult = instance.calculate(_selectedNumber);
       _priceToRefund = currentResult.result;
       resultDecomposition = currentResult.resultDecomposition;
+      map = instance.generateResultMap();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,25 +184,90 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.bold,
                             ),),
-                      const SizedBox(height: 20.0),
-                      Text("Décomposition du calcul : $resultDecomposition .",
-                          style : const TextStyle(
-                            fontFamily: 'montserrat',
-                            fontWeight: FontWeight.bold,
-                          ))
+                      const SizedBox(height: 50.0),
+                     /* Text("Décomposition du calcul : $resultDecomposition",
+                        style: const TextStyle(
+                          fontFamily: 'montserrat',
+                          fontWeight: FontWeight.bold,
+                        ),)*/
                     ],
-
-
                   ),
                 ),
-
-
-              // Ajustez cet espacement selon vos besoins
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(100,10,100,10),
+              child: ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return  MyDialog( map: map);
+                      },
+                    );
+                  },
+                  child: const Text("Décomposition",
+                      style: TextStyle(
+                          fontFamily: 'montserrat',
+                          fontWeight: FontWeight.bold))),
+            )
             ],
+            
+            
+          ),
+        ),
+        
+      ),
 
+    );
+  }
+}
+class MyDialog extends StatefulWidget {
+   List<Map<String, dynamic>> map;
+  // Sample data for the DataTable
+
+   MyDialog({required this.map, super.key});
+
+  @override
+  State<MyDialog> createState() => _MyDialogState();
+}
+
+class _MyDialogState extends State<MyDialog> {
+  @override
+  Widget build(BuildContext context) {
+
+    return AlertDialog(
+      title: const Text('Décomposition'),
+      content: Container(
+        width: double.maxFinite,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columns: const [
+              DataColumn(label: Text('Tranche Km')),
+              DataColumn(label: Text('Frais €')),
+              DataColumn(label: Text('Result €')),
+            ],
+            rows: List<DataRow>.generate(
+              widget.map.length,
+                  (index) => DataRow(
+                cells: [
+                  DataCell(Text(widget.map[index]['Tranche'])),
+                  DataCell(Text(widget.map[index]['Frais'])),
+                  DataCell(Text(widget.map[index]['Result'].toString())),
+                ],
+              ),
+            ),
           ),
         ),
       ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Close'),
+        ),
+      ],
     );
   }
 }
