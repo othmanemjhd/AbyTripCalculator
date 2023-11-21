@@ -155,6 +155,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                           _priceToRefund = 0;
                           resultDecomposition = "";
                           _selectedNumberController.clear();
+                          map.clear();
                         });
                       },
                       style : ElevatedButton.styleFrom(
