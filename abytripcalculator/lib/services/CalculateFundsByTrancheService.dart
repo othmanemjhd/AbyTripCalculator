@@ -55,19 +55,9 @@ Result calculate(int numbreOfKilometres){
 
   return funds;
 }
-   String formatDouble(double value) {
-     String stringValue = value.toString();
 
-     // Check if there is a decimal point
-     if (stringValue.contains('.')) {
-       // Remove trailing zeros and the decimal point if there are no digits after it
-       stringValue = stringValue.replaceAll(RegExp(r"([.]*0)(?!.*\d)"), "");
-     }
 
-     return stringValue;
-   }
 List<Map<String,dynamic>> generateResultMap(){
-
   return map;
 }
 }

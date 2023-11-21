@@ -180,7 +180,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Le montant à rembourser est : $_priceToRefund €',
+                      Text('Le montant à rembourser est : ${_priceToRefund.toStringAsFixed(2)} €',
                               style: const TextStyle(
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.bold,
