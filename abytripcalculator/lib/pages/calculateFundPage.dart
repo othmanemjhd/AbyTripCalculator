@@ -195,31 +195,35 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                   ),
                 ),
             const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return  MyDialog( map: map);
+            Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return  MyDialog( map: map);
+                          },
+                        );
                       },
-                    );
-                  },
-                  child: const Text("Décomposition",
-                      style: TextStyle(
-                          fontFamily: 'montserrat',
-                          fontWeight: FontWeight.bold))),
-            )
+                      child: const Text("Décomposition",
+                          style: TextStyle(
+                              fontFamily: 'montserrat',
+                              fontWeight: FontWeight.bold))),
+                ],
+              ),
+            ),
             ],
-            
-            
           ),
         ),
-        
+
       ),
 
     );
+
   }
 }
 class MyDialog extends StatefulWidget {

@@ -9,8 +9,12 @@ class SingleAuthService {
 
     if (enteredUsername == validUsername && enteredPassword == validPassword) {
       // Authentication successful
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('authenticated', true);
+      try {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool('authenticated', true);
+      } catch (e) {
+        print('Error accessing SharedPreferences: $e');
+      }
 
       return true;
     } else {
