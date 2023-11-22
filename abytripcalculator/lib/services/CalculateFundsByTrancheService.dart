@@ -42,15 +42,15 @@ Result calculate(int numbreOfKilometres){
       trancheMap = ">";
     }
     map.add(({"Tranche": "${tranche.debutTranche} - $trancheMap",
-              'Frais': tranche.fraisRemboursement.toStringAsFixed(2),
-               'Result': '${currentResult.toStringAsFixed(2)} €'}));
+              'Frais': '${ formatDouble(tranche.fraisRemboursement)} €',
+              'Result': ' ${formatDouble(currentResult)} €'}));
     if(numbreOfKilometres<tranche.finTranche){
       break;
     }
   }
 
   //Last item with the final result
-   map.add(({"Tranche": "", 'Frais': '', 'Result': '${result.toStringAsFixed(2)} €'}));
+   map.add(({"Tranche": "", 'Frais': '', 'Result': '${formatDouble(result)} €'}));
    Result funds = Result(result, resultDecomposition) ;
 
   return funds;
@@ -59,5 +59,14 @@ Result calculate(int numbreOfKilometres){
 
 List<Map<String,dynamic>> generateResultMap(){
   return map;
+}
+String formatDouble(double fraisDouble){
+  if (fraisDouble % 1 == 0) {
+    // It's an integer, don't add decimal places
+    return fraisDouble.toInt().toString();
+  } else {
+    // It's a double, format with two decimal places
+    return fraisDouble.toStringAsFixed(2);
+  }
 }
 }
