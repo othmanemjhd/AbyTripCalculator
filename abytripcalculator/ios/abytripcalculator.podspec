@@ -11,5 +11,5 @@ s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'username' => 'othmane.mjhd@gmail.com' }
 s.source           = { :git => 'https://github.com/othmanemjhd/AbyTripCalculator.git', :tag => s.version.to_s }
 s.ios.deployment_target = 11.0
-s.source_files = 'abytripcalculator/*'
+s.source_files = 'abytripcalculator/**/*.{h,m,swift}'
 end
