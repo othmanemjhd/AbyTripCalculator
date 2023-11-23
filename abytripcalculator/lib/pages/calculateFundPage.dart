@@ -43,7 +43,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.bold,
-            fontSize: 30,
+            //fontSize: 30,
             color: Colors.white,
           ),
         ),
@@ -113,11 +113,14 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                         _selectedNumber = int.tryParse(value) ?? 0;
                       });
                     },
-
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                    ),
                     decoration: const InputDecoration(
                       labelText: 'Saisir le nombre de kilomètre global',
                       contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                       border: OutlineInputBorder(),
+
                     ),
                   ),
                 ),
@@ -136,8 +139,13 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                         }
                       },
                       style : ElevatedButton.styleFrom(
+                          padding: EdgeInsets.fromLTRB(
+                            MediaQuery.of(context).size.width * 0.1,
+                            MediaQuery.of(context).size.height * 0.015,
+                            MediaQuery.of(context).size.width * 0.1,
+                            MediaQuery.of(context).size.height * 0.015,
+                          ),
                           backgroundColor: Colors.green[900],
-                          padding:const EdgeInsets.fromLTRB(50, 10, 50, 10),
                           shape : RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)
                           )
@@ -160,7 +168,12 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                       },
                       style : ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange[200],
-                          padding:const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                          padding: EdgeInsets.fromLTRB(
+                            MediaQuery.of(context).size.width * 0.1,
+                            MediaQuery.of(context).size.height * 0.015,
+                            MediaQuery.of(context).size.width * 0.1,
+                            MediaQuery.of(context).size.height * 0.015,
+                          ),
                           shape : RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)
                           )
@@ -194,10 +207,11 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                     ],
                   ),
                 ),
-              const SizedBox(height: 100.0),
+              const SizedBox(height: 80.0),
            Align(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
+
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -241,20 +255,23 @@ class _MyDialogState extends State<MyDialog> {
         width: double.maxFinite,
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: DataTable(
-            columns: const [
-              DataColumn(label: Text('Tranche Km')),
-              DataColumn(label: Text('Frais €')),
-              DataColumn(label: Text('Result €')),
-            ],
-            rows: List<DataRow>.generate(
-              widget.map.length,
-                  (index) => DataRow(
-                cells: [
-                  DataCell(Text(widget.map[index]['Tranche'])),
-                  DataCell(Text(widget.map[index]['Frais'])),
-                  DataCell(Text(widget.map[index]['Result'].toString())),
-                ],
+          child: SizedBox(
+            width :MediaQuery.of(context).size.width,
+            child: DataTable(
+              columns: const [
+                DataColumn(label: Text('Tranche Km')),
+                DataColumn(label: Text('Frais €')),
+                DataColumn(label: Text('Result €')),
+              ],
+              rows: List<DataRow>.generate(
+                widget.map.length,
+                    (index) => DataRow(
+                  cells: [
+                    DataCell(Text(widget.map[index]['Tranche'])),
+                    DataCell(Text(widget.map[index]['Frais'])),
+                    DataCell(Text(widget.map[index]['Result'].toString())),
+                  ],
+                ),
               ),
             ),
           ),

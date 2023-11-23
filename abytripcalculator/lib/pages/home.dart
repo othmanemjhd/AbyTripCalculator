@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
         title: const Text('Aby Trip Calculator', style: TextStyle(
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.bold,
-          fontSize: 30,
+          //fontSize: 30,
           color: Colors.white,
         ),),
         centerTitle: true,

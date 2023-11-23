@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(
             fontFamily: 'Montserrat',
             fontWeight: FontWeight.bold,
-            fontSize: 28,
+            //fontSize: 28,
             color: Colors.white,
           ),
         ),
@@ -72,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.person),
                       labelText: 'Identifiant',
                       contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                      // contentPadding: EdgeInsets.symmetric(vertical: 30),
@@ -102,6 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                           });
                         },
                       ),
+                      prefixIcon: const Icon(Icons.lock),
 
                     border: const OutlineInputBorder(),
                   ),
