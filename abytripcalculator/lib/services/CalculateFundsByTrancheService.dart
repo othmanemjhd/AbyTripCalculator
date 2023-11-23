@@ -36,11 +36,13 @@ Result calculate(int numbreOfKilometres){
       }
       resultDecomposition += "($distanceInTranche * ${tranche.fraisRemboursement})";
     }
+    // get the data
     String trancheMap = tranche.finTranche.toString();
     double currentResult = (distanceInTranche*tranche.fraisRemboursement);
-    if(tranche.debutTranche == 150) {
-      trancheMap = ">";
-    }
+
+    //init the
+    tranche.debutTranche == 150?trancheMap = ">":trancheMap += " Km";
+
     map.add(({"Tranche": "${tranche.debutTranche} - $trancheMap",
               'Frais': '${ formatDouble(tranche.fraisRemboursement)} €',
               'Result': ' ${formatDouble(currentResult)} €'}));
@@ -60,6 +62,7 @@ Result calculate(int numbreOfKilometres){
 List<Map<String,dynamic>> generateResultMap(){
   return map;
 }
+
 String formatDouble(double fraisDouble){
   if (fraisDouble % 1 == 0) {
     // It's an integer, don't add decimal places
