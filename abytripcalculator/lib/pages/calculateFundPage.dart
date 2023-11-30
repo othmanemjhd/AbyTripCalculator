@@ -253,7 +253,7 @@ class _MyDialogState extends State<MyDialog> {
 
     return AlertDialog(
       title: const Text('Décomposition'),
-      content: Container(
+      content: SizedBox(
         width: double.maxFinite,
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,

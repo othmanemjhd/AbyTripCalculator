@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   runApp(const ShowDecomposition());
@@ -18,12 +19,12 @@ class _ShowDecompositionState extends State<ShowDecomposition> {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
-          title: const Text(
+          title:  Text(
             'Décompositon du calcul',
             style: TextStyle(
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.bold,
-              //fontSize: 30,
+              fontSize: MediaQuery.of(context).size.width * 0.05,
               color: Colors.white,
             ),
           ),
@@ -36,34 +37,41 @@ class _ShowDecompositionState extends State<ShowDecomposition> {
           ),
 
         ),
-      body: Column(
-        children: [
-            SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: SizedBox(
-              width :MediaQuery.of(context).size.width,
-              child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Tranche Km')),
-                  DataColumn(label: Text('Frais €')),
-                  DataColumn(label: Text('Result €')),
-                ],
-                rows: List<DataRow>.generate(
-                  map.length,
-                      (index) => DataRow(
-                    cells: [
-                      DataCell(Text(map[index]['Tranche'])),
-                      DataCell(Text(map[index]['Frais'])),
-                      DataCell(Text(map[index]['Result'].toString())),
-                    ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return ListView(
+              scrollDirection: Axis.horizontal,
+            children :[ SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: constraints.maxWidth,
+                  minHeight: constraints.maxHeight,
+                ),
+                child: DataTable(
+                  columns: const [
+                    DataColumn(label: Text('Tranche Km')),
+                    DataColumn(label: Text('Frais €')),
+                    DataColumn(label: Text('Result €')),
+                  ],
+                  rows: List<DataRow>.generate(
+                    map.length,
+                        (index) => DataRow(
+                      cells: [
+                        DataCell(Text(map[index]['Tranche'])),
+                        DataCell(Text(map[index]['Frais'])),
+                        DataCell(Text(map[index]['Result'].toString())),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+            ]
+          );
+        },
       ),
-      );
+    );
 
   }
 }
