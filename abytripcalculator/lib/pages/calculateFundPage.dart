@@ -20,6 +20,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
   final List<String> _imageUrls = [
     'assets/images/car1.png',
     'assets/images/car2.png',
+    'assets/images/car3.png',
 
   ];
   List<Map<String,dynamic>> map = [];

@@ -11,7 +11,7 @@ import '../tools/TrancheKilometrique.dart';
   TrancheKilometrique tranche5 = TrancheKilometrique(85, 105, 0.35);
   TrancheKilometrique tranche6 = TrancheKilometrique(105, 125, 0.35);
   TrancheKilometrique tranche7 = TrancheKilometrique(125, 150, 0.40);
-  TrancheKilometrique tranche8 = TrancheKilometrique(150, 9223372036854775807, 0.40);
+  TrancheKilometrique tranche8 = TrancheKilometrique(150, 9223372036854, 0.40);
 
   // on stocke  ces objets TrancheKilometrique dans une liste  .
   List<TrancheKilometrique> tranchesKilometriques = [tranche1, tranche2, tranche3,tranche4,tranche5,tranche6,tranche7,tranche8];
