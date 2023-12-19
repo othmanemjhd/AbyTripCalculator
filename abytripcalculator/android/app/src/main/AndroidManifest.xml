@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.abylsen.abytripcalculator">
    <application
-        android:label="abytripcalculator"
+        android:label="AbyTripCalculator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
