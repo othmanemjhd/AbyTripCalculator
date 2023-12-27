@@ -148,6 +148,8 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                           // Ajoutez ici la logique pour le bouton "Calculer"
                           calculateFundsAndSetResult();
                         }
+                        _focusNode.unfocus();
+
                       },
                       style : ElevatedButton.styleFrom(
                           padding: EdgeInsets.fromLTRB(
