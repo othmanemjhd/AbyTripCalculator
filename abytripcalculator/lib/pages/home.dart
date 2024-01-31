@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
           // Set border radius
          // side: const BorderSide(color: Colors.white, width: 2.0), // Set border color and width
         ),
-        label: const Text('SE CONNECTER',
+        label: const Text('GET STARTED',
           style:TextStyle(
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.bold,

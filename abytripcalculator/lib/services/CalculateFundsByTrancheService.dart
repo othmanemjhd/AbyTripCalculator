@@ -4,7 +4,7 @@ import '../tools/TrancheKilometrique.dart';
    late List<TrancheKilometrique> tranchesKilometriques;
    late List<Map<String,dynamic>> map ;
    static List<TrancheKilometrique> init(){
-  TrancheKilometrique tranche1 = TrancheKilometrique(0, 25, 0);
+  TrancheKilometrique tranche1 = TrancheKilometrique(0, 25, 4);
   TrancheKilometrique tranche2 = TrancheKilometrique(25, 45, 0.25);
   TrancheKilometrique tranche3 = TrancheKilometrique(45, 65, 0.30);
   TrancheKilometrique tranche4 = TrancheKilometrique(65, 85, 0.30);

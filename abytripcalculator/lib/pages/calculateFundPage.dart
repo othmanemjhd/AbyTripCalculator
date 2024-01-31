@@ -25,6 +25,8 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
   ];
   List<Map<String,dynamic>> map = [];
   FocusNode _focusNode = FocusNode();
+  String _pidg_text = '';
+  String _toRefund_text = 'Le montant à rembourser est';
   void calculateFundsAndSetResult() {
     // Appel de la fonction avec la valeur actuelle de inputValue
     setState(() {
@@ -43,6 +45,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
   }
   @override
   Widget build(BuildContext context) {
+    bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -71,11 +74,11 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              
+
               const Padding(
                 padding: EdgeInsets.all(30.0),
                 child: Center(
-                  child: Text('BIENVENUE',style: TextStyle(
+                  child: Text('Bienvenue ABYLSEN. ',style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     fontFamily: 'Montserrat'
@@ -122,6 +125,9 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                     onChanged: (value) {
                       setState(() {
                         _selectedNumber = int.tryParse(value) ?? 0;
+                        if(_selectedNumber > 150){
+                          _pidg_text = 'PIGD : Politique Indeminité Grand Déplacement';
+                        }
                       });
                     },
                     style: TextStyle(
@@ -131,7 +137,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                       labelText: 'Saisir le nombre de kilomètre global',
                       contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                       border: OutlineInputBorder(),
-          
+
                     ),
                   ),
                 ),
@@ -174,9 +180,11 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                         // Ajoutez ici la logique pour le bouton "Annuler"
                         setState(() {
                           _priceToRefund = 0;
+                          _selectedNumber=0;
                           resultDecomposition = "";
                           _selectedNumberController.clear();
                           map.clear();
+
                         });
                       },
                       style : ElevatedButton.styleFrom(
@@ -206,12 +214,12 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Le montant à rembourser est : ${_priceToRefund.toStringAsFixed(2)} €',
+                      Text((_selectedNumber)<=150?'$_toRefund_text ${_priceToRefund.toStringAsFixed(2)} €':_pidg_text,
                               style: const TextStyle(
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.bold,
                             ),),
-          
+
                      /* Text("Décomposition du calcul : $resultDecomposition",
                         style: const TextStyle(
                           fontFamily: 'montserrat',
@@ -229,27 +237,51 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                MediaQuery.of(context).size.width * 0.25,
                MediaQuery.of(context).size.height * 0.015,
              ),
-             child: ElevatedButton(
-                 onPressed: () {
-                   Navigator.pushNamed(context, '/display', arguments: map);
-                   /*showDialog(
-                     context: context,
-                     builder: (BuildContext context) {
-                       return  MyDialog( map: map);
-                     },
-                   );*/
-                 },
-                 child: const Text("Décomposition",
-                     style: TextStyle(
-                         fontFamily: 'montserrat',
-                         fontWeight: FontWeight.bold))),
+             // child: _selectedNumber < 150? ElevatedButton(
+             //     onPressed: () {
+             //       Navigator.pushNamed(context, '/display', arguments: map);
+             //       /*showDialog(
+             //         context: context,
+             //         builder: (BuildContext context) {
+             //           return  MyDialog( map: map);
+             //         },
+             //       );*/
+             //     },
+             //     child: const Text("Décomposition",
+             //         style: TextStyle(
+             //             fontFamily: 'montserrat',
+             //             fontWeight: FontWeight.bold))
+             // ):null,
+
            ),
+
             ],
+
           ),
+
         ),
 
       ),
+    floatingActionButton:  (_selectedNumber > 150 || keyboardIsOpened )? null :FloatingActionButton.extended(
+      onPressed: (){
+        Navigator.pushNamed(context, '/display', arguments: map);
+      },
+      label: Text('Décomposition',
+          style: const TextStyle(
+          fontFamily: 'montserrat',
+          fontWeight: FontWeight.bold,
+      )),
+      icon: Icon(Icons.list_alt),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0)
+      ),
 
+    ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    bottomNavigationBar: _selectedNumber < 150? BottomAppBar(
+      shape:const CircularNotchedRectangle(),
+      height: 50,
+    ):null,
     );
 
   }
