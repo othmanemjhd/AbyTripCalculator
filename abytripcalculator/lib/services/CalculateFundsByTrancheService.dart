@@ -17,16 +17,16 @@ import '../tools/TrancheKilometrique.dart';
   List<TrancheKilometrique> tranchesKilometriques = [tranche1, tranche2, tranche3,tranche4,tranche5,tranche6,tranche7,tranche8];
   return  tranchesKilometriques;
 }
-Result calculate(int numbreOfKilometres){
+Result calculate(double numbreOfKilometres){
      tranchesKilometriques = init();
      map = [];
      double result = 0;
   String resultDecomposition = "";
-  int distanceInTranche = 0;
+  double distanceInTranche = 0;
   for (TrancheKilometrique tranche in tranchesKilometriques) {
     if (numbreOfKilometres >= tranche.debutTranche  ) {
       if(numbreOfKilometres >= tranche.finTranche ){
-        distanceInTranche = tranche.finTranche - tranche.debutTranche ;
+        distanceInTranche = (tranche.finTranche - tranche.debutTranche)  ;
       }else{
         distanceInTranche = numbreOfKilometres - tranche.debutTranche ;
       }

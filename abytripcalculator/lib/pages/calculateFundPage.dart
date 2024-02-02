@@ -12,9 +12,11 @@ class CalculateFundPage extends StatefulWidget {
 }
 
 class _CalculateFundPageState extends State<CalculateFundPage> {
-  int _selectedNumber = 0;
+  double _selectedNumber = 0;
   double _priceToRefund = 0;
   late String resultDecomposition = "";
+  String _toRefund_text ='Le montant à rembourser est :';
+
   final TextEditingController _selectedNumberController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final List<String> _imageUrls = [
@@ -25,8 +27,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
   ];
   List<Map<String,dynamic>> map = [];
   FocusNode _focusNode = FocusNode();
-  String _pidg_text = '';
-  String _toRefund_text = 'Le montant à rembourser est';
+
   void calculateFundsAndSetResult() {
     // Appel de la fonction avec la valeur actuelle de inputValue
     setState(() {
@@ -46,6 +47,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
   @override
   Widget build(BuildContext context) {
     bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -79,9 +81,8 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                 padding: EdgeInsets.all(30.0),
                 child: Center(
                   child: Text('Bienvenue ABYLSEN. ',style: TextStyle(
-                    fontWeight: FontWeight.bold,
                     fontSize: 25,
-                    fontFamily: 'Montserrat'
+                    fontFamily: 'poppins'
                   ),),
                 ),
               ),
@@ -124,10 +125,10 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                     },
                     onChanged: (value) {
                       setState(() {
-                        _selectedNumber = int.tryParse(value) ?? 0;
-                        if(_selectedNumber > 150){
-                          _pidg_text = 'PIGD : Politique Indeminité Grand Déplacement';
-                        }
+                        _selectedNumber = double.tryParse(value) ?? 0;
+                         (_selectedNumber > 150)?_toRefund_text = 'PIGD : Politique Indeminité Grand Déplacement.':
+                          _toRefund_text = 'Le montant à rembourser est :';
+
                       });
                     },
                     style: TextStyle(
@@ -150,7 +151,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
+                        if (_formKey.currentState!.validate() && _selectedNumber <=150) {
                           // Ajoutez ici la logique pour le bouton "Calculer"
                           calculateFundsAndSetResult();
                         }
@@ -180,6 +181,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                         // Ajoutez ici la logique pour le bouton "Annuler"
                         setState(() {
                           _priceToRefund = 0;
+                          _toRefund_text = 'Le montant à rembourser est :';
                           _selectedNumber=0;
                           resultDecomposition = "";
                           _selectedNumberController.clear();
@@ -214,7 +216,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text((_selectedNumber)<=150?'$_toRefund_text ${_priceToRefund.toStringAsFixed(2)} €':_pidg_text,
+                      Text((_selectedNumber)<=150?'$_toRefund_text ${_priceToRefund.toStringAsFixed(2)} €':_toRefund_text,
                               style: const TextStyle(
                               fontFamily: 'montserrat',
                               fontWeight: FontWeight.bold,

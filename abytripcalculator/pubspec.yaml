@@ -96,6 +96,12 @@ flutter:
       fonts:
         - asset: assets/fonts/Anton-Regular.ttf
 
+    - family: Poppins
+      fonts:
+      - asset: assets/fonts/Poppins-ExtraLight.ttf
+      - asset: assets/fonts/Poppins-Light.ttf
+
+
 
   #
   # For details regarding fonts from package dependencies,
