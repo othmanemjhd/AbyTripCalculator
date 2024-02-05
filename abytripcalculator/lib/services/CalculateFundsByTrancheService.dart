@@ -24,9 +24,9 @@ double calculate(double numbreOfKilometres){
      tranchesKilometriques = init();
      map = [];
      double result = 0;
-  double distanceInTranche = 0;
+     double distanceInTranche = 0;
   // add the tranche if the number of km <41km
-  if(numbreOfKilometres <= 41){
+  if(numbreOfKilometres > 0 && numbreOfKilometres <= 41){
     map.add(({"Tranche": "0 - 41 km", 'Frais': '-', 'Result': '4 €'}));
     return 4;
   }
