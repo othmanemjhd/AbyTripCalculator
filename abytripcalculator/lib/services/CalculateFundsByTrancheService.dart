@@ -1,11 +1,14 @@
-import '../tools/Result.dart';
 import '../tools/TrancheKilometrique.dart';
  class CalculateFund{
    late List<TrancheKilometrique> tranchesKilometriques;
    late List<Map<String,dynamic>> map ;
+
+
    static List<TrancheKilometrique> init(){
-  TrancheKilometrique tranche1 = TrancheKilometrique(0, 25, 4);
-  TrancheKilometrique tranche2 = TrancheKilometrique(25, 45, 0.25);
+     // entre 0-41 => 4 € , pas de calcul
+  //TrancheKilometrique tranche1 = TrancheKilometrique(0, 41, 4);
+  //on repart de 0
+  TrancheKilometrique tranche2 = TrancheKilometrique(0, 45, 0.25);
   TrancheKilometrique tranche3 = TrancheKilometrique(45, 65, 0.30);
   TrancheKilometrique tranche4 = TrancheKilometrique(65, 85, 0.30);
   TrancheKilometrique tranche5 = TrancheKilometrique(85, 105, 0.35);
@@ -14,48 +17,53 @@ import '../tools/TrancheKilometrique.dart';
   TrancheKilometrique tranche8 = TrancheKilometrique(150, 9223372036854, 0.40);
 
   // on stocke  ces objets TrancheKilometrique dans une liste  .
-  List<TrancheKilometrique> tranchesKilometriques = [tranche1, tranche2, tranche3,tranche4,tranche5,tranche6,tranche7,tranche8];
+  List<TrancheKilometrique> tranchesKilometriques = [ tranche2, tranche3,tranche4,tranche5,tranche6,tranche7,tranche8];
   return  tranchesKilometriques;
 }
-Result calculate(double numbreOfKilometres){
+double calculate(double numbreOfKilometres){
      tranchesKilometriques = init();
      map = [];
      double result = 0;
-  String resultDecomposition = "";
   double distanceInTranche = 0;
+  // add the tranche if the number of km <41km
+  if(numbreOfKilometres <= 41){
+    map.add(({"Tranche": "0 - 41 km", 'Frais': '-', 'Result': '4 €'}));
+    return 4;
+  }
+  // The treatment if the nb km < 41
+  else{
   for (TrancheKilometrique tranche in tranchesKilometriques) {
-    if (numbreOfKilometres >= tranche.debutTranche  ) {
-      if(numbreOfKilometres >= tranche.finTranche ){
-        distanceInTranche = (tranche.finTranche - tranche.debutTranche)  ;
-      }else{
-        distanceInTranche = numbreOfKilometres - tranche.debutTranche ;
+      if (numbreOfKilometres >= tranche.debutTranche) {
+        if (numbreOfKilometres >= tranche.finTranche) {
+          distanceInTranche = (tranche.finTranche - tranche.debutTranche);
+        } else {
+          distanceInTranche = numbreOfKilometres - tranche.debutTranche;
+        }
+        result += distanceInTranche * tranche.fraisRemboursement;
       }
-        result += distanceInTranche*tranche.fraisRemboursement;
-      if (tranche.debutTranche != 0) {
-        resultDecomposition += " + ";
-      }
-      resultDecomposition += "($distanceInTranche * ${tranche.fraisRemboursement})";
-    }
+
     // get the data
-    String trancheMap = tranche.finTranche.toString();
-    double currentResult = (distanceInTranche*tranche.fraisRemboursement);
+    String trancheMap = tranche.finTranche.toInt().toString();
+    double currentResult = (distanceInTranche * tranche.fraisRemboursement);
 
-    //init the
-    tranche.debutTranche == 150?trancheMap = ">":trancheMap += " Km";
+    //The last part of the tranche
+    tranche.debutTranche == 150 ? trancheMap = ">" : trancheMap += " Km";
 
-    map.add(({"Tranche": "${tranche.debutTranche} - $trancheMap",
-              'Frais': '${ formatDouble(tranche.fraisRemboursement)} €',
-              'Result': ' ${formatDouble(currentResult)} €'}));
-    if(numbreOfKilometres<tranche.finTranche){
+    map.add(
+        ({"Tranche": "${tranche.debutTranche.toInt().toString()} - $trancheMap",
+          'Frais': '${ formatDouble(tranche.fraisRemboursement)} €',
+          'Result': ' ${formatDouble(currentResult)} €'}));
+    if (numbreOfKilometres < tranche.finTranche) {
       break;
     }
+  }
   }
 
   //Last item with the final result
    map.add(({"Tranche": "", 'Frais': '', 'Result': '${formatDouble(result)} €'}));
-   Result funds = Result(result, resultDecomposition) ;
+   //Result funds = Result(result, resultDecomposition) ;
 
-  return funds;
+  return result;
 }
 
 

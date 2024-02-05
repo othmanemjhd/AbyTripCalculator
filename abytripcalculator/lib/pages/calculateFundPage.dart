@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../services/CalculateFundsByTrancheService.dart';
-import '../tools/Result.dart';
 
 class CalculateFundPage extends StatefulWidget {
   const CalculateFundPage({super.key});
@@ -32,9 +31,7 @@ class _CalculateFundPageState extends State<CalculateFundPage> {
     // Appel de la fonction avec la valeur actuelle de inputValue
     setState(() {
       CalculateFund instance = CalculateFund();
-      Result currentResult = instance.calculate(_selectedNumber);
-      _priceToRefund = currentResult.result;
-      resultDecomposition = currentResult.resultDecomposition;
+      _priceToRefund = instance.calculate(_selectedNumber);
       map = instance.generateResultMap();
     });
   }
