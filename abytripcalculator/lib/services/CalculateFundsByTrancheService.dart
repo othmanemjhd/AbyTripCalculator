@@ -2,13 +2,13 @@ import '../tools/TrancheKilometrique.dart';
  class CalculateFund{
    late List<TrancheKilometrique> tranchesKilometriques;
    late List<Map<String,dynamic>> map ;
-
+   double fixeTarif = 4 ;
 
    static List<TrancheKilometrique> init(){
      // entre 0-41 => 4 € , pas de calcul
   //TrancheKilometrique tranche1 = TrancheKilometrique(0, 41, 4);
   //on repart de 0
-  TrancheKilometrique tranche2 = TrancheKilometrique(0, 45, 0.25);
+  TrancheKilometrique tranche2 = TrancheKilometrique(41, 45, 0.25);
   TrancheKilometrique tranche3 = TrancheKilometrique(45, 65, 0.30);
   TrancheKilometrique tranche4 = TrancheKilometrique(65, 85, 0.30);
   TrancheKilometrique tranche5 = TrancheKilometrique(85, 105, 0.35);
@@ -28,10 +28,11 @@ double calculate(double numbreOfKilometres){
   // add the tranche if the number of km <41km
   if(numbreOfKilometres > 0 && numbreOfKilometres <= 41){
     map.add(({"Tranche": "0 - 41 km", 'Frais': '-', 'Result': '4 €'}));
-    return 4;
+    return fixeTarif;
   }
   // The treatment if the nb km < 41
   else{
+    map.add(({"Tranche": "0 - 41 km", 'Frais': '-', 'Result': '4 €'}));
   for (TrancheKilometrique tranche in tranchesKilometriques) {
       if (numbreOfKilometres >= tranche.debutTranche) {
         if (numbreOfKilometres >= tranche.finTranche) {
@@ -58,10 +59,10 @@ double calculate(double numbreOfKilometres){
     }
   }
   }
-
+  //Add the fixed tariff of the first tranche
+  result+=fixeTarif;
   //Last item with the final result
    map.add(({"Tranche": "", 'Frais': '', 'Result': '${formatDouble(result)} €'}));
-   //Result funds = Result(result, resultDecomposition) ;
 
   return result;
 }
