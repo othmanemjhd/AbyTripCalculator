@@ -53,7 +53,7 @@ double calculate(double numbreOfKilometres){
     map.add(
         ({"Tranche": "${tranche.debutTranche.toInt().toString()} - $trancheMap",
           'Frais': '${ formatDouble(tranche.fraisRemboursement)} €',
-          'Result': ' ${formatDouble(currentResult)} €'}));
+          'Result': '${formatDouble(currentResult)} €'}));
     if (numbreOfKilometres < tranche.finTranche) {
       break;
     }
