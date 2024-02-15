@@ -8,25 +8,25 @@ class CalculateFund {
 
   static List<TrancheKilometrique> init() {
     // entre 0-41 => 4 € , pas de calcul
-    //TrancheKilometrique tranche1 = TrancheKilometrique(0, 41, 4);
+    //TrancheKilometrique tranche0 = TrancheKilometrique(0, 41, 4);
     //on repart de 0
-    TrancheKilometrique tranche2 = TrancheKilometrique(41, 45, 0.25);
-    TrancheKilometrique tranche3 = TrancheKilometrique(45, 65, 0.30);
-    TrancheKilometrique tranche4 = TrancheKilometrique(65, 85, 0.30);
-    TrancheKilometrique tranche5 = TrancheKilometrique(85, 105, 0.35);
-    TrancheKilometrique tranche6 = TrancheKilometrique(105, 125, 0.35);
-    TrancheKilometrique tranche7 = TrancheKilometrique(125, 150, 0.40);
-    TrancheKilometrique tranche8 = TrancheKilometrique(150, 9223372036854, 0.40);
+    TrancheKilometrique tranche1 = TrancheKilometrique(41, 45, 0.25);
+    TrancheKilometrique tranche2 = TrancheKilometrique(45, 65, 0.30);
+    TrancheKilometrique tranche3 = TrancheKilometrique(65, 85, 0.30);
+    TrancheKilometrique tranche4 = TrancheKilometrique(85, 105, 0.35);
+    TrancheKilometrique tranche5 = TrancheKilometrique(105, 125, 0.35);
+    TrancheKilometrique tranche6 = TrancheKilometrique(125, 150, 0.40);
+    TrancheKilometrique tranche7 = TrancheKilometrique(150, 9223372036854, 0.40);
 
     // on stocke  ces objets TrancheKilometrique dans une liste  .
     List<TrancheKilometrique> tranchesKilometriques = [
+      tranche1,
       tranche2,
       tranche3,
       tranche4,
       tranche5,
       tranche6,
-      tranche7,
-      tranche8
+      tranche7
     ];
     return tranchesKilometriques;
   }
